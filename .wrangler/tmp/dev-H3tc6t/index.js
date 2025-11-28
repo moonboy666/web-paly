@@ -1,7 +1,7 @@
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
-// .wrangler/tmp/bundle-2svfAU/strip-cf-connecting-ip-header.js
+// .wrangler/tmp/bundle-1oTSMS/strip-cf-connecting-ip-header.js
 function stripCfConnectingIPHeader(input, init) {
   const request = new Request(input, init);
   request.headers.delete("CF-Connecting-IP");
@@ -24,7 +24,7 @@ async function handleTorrentInfo(request, env) {
     if (!infoHash) {
       return new Response(JSON.stringify({ error: "\u7F3A\u5C11infoHash\u53C2\u6570" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json", ...corsHeaders }
       });
     }
     const torrentInfo = {
@@ -35,12 +35,12 @@ async function handleTorrentInfo(request, env) {
       // 1GB
     };
     return new Response(JSON.stringify({ success: true, data: torrentInfo }), {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   }
 }
@@ -54,7 +54,7 @@ async function handleTorrentParse(request, env) {
     if (!infoHash) {
       return new Response(JSON.stringify({ error: "\u7F3A\u5C11infoHash\u53C2\u6570" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json", ...corsHeaders }
       });
     }
     const parsedData = {
@@ -66,12 +66,12 @@ async function handleTorrentParse(request, env) {
       ]
     };
     return new Response(JSON.stringify({ success: true, data: parsedData }), {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   }
 }
@@ -85,7 +85,7 @@ async function handleParseTorrent(request, env) {
     if (!torrentFile) {
       return new Response(JSON.stringify({ error: "\u8BF7\u4E0A\u4F20\u79CD\u5B50\u6587\u4EF6" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json", ...corsHeaders }
       });
     }
     const parsedData = {
@@ -104,12 +104,12 @@ async function handleParseTorrent(request, env) {
       ]
     };
     return new Response(JSON.stringify(parsedData), {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message || "\u89E3\u6790\u79CD\u5B50\u6587\u4EF6\u5931\u8D25\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5" }), {
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   }
 }
@@ -135,7 +135,7 @@ async function handleParseMagnet(request, env) {
     if (!magnetUrl) {
       return new Response(JSON.stringify({ error: "\u8BF7\u63D0\u4F9B\u78C1\u529B\u94FE\u63A5" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json", ...corsHeaders }
       });
     }
     const parsed = parseMagnetUrl(magnetUrl);
@@ -156,12 +156,12 @@ async function handleParseMagnet(request, env) {
       files
     };
     return new Response(JSON.stringify(parsedData), {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message || "\u89E3\u6790\u78C1\u529B\u94FE\u63A5\u5931\u8D25\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5" }), {
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json", ...corsHeaders }
     });
   }
 }
@@ -229,7 +229,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-2svfAU/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-1oTSMS/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -261,7 +261,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// .wrangler/tmp/bundle-2svfAU/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-1oTSMS/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

@@ -38,7 +38,7 @@ function App() {
       formData.append('torrent', blob, filename);
 
       // 调用后端API解析种子文件
-      const response = await fetch('/api/parse-torrent', {
+      const response = await fetch('https://bt-torrent-worker.haohaolovegaogao.workers.dev/api/parse-torrent', {
         method: 'POST',
         body: formData,
       });
@@ -67,7 +67,7 @@ function App() {
 
     try {
       // 调用后端API解析磁力链接
-      const response = await fetch('/api/parse-magnet', {
+      const response = await fetch('https://bt-torrent-worker.haohaolovegaogao.workers.dev/api/parse-torrent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

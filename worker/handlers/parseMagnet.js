@@ -22,7 +22,7 @@ export async function handleParseMagnet(request, env) {
     if (!magnetUrl) {
       return new Response(JSON.stringify({ error: '请提供磁力链接' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });
     }
 
@@ -50,12 +50,12 @@ export async function handleParseMagnet(request, env) {
     };
 
     return new Response(JSON.stringify(parsedData), {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message || '解析磁力链接失败，请稍后重试' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   }
 }

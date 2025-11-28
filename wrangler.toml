@@ -1,7 +1,5 @@
-name = "bt-torrent-worker"
-main = "worker/index.js"
-compatibility_date = "2024-10-22"
+name = "bt-torrent-worker"  # Worker名称（自定义，英文+数字）
+main = "worker/index.js"    # 入口文件路径（不变）
+compatibility_date = "2024-10-22"  # 兼容性日期（不变）
 
-[[routes]]
-pattern = "your-domain.com/api/*" # 替换为你的域名
-zone_name = "your-domain.com"     # 替换为你的域名
+# 无需配置 [[routes]] 和 zone_name（没有自定义域名时不需要）

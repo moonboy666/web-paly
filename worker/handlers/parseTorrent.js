@@ -7,7 +7,7 @@ export async function handleParseTorrent(request, env) {
     if (!torrentFile) {
       return new Response(JSON.stringify({ error: '请上传种子文件' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });
     }
 
@@ -29,12 +29,12 @@ export async function handleParseTorrent(request, env) {
     };
 
     return new Response(JSON.stringify(parsedData), {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message || '解析种子文件失败，请稍后重试' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   }
 }

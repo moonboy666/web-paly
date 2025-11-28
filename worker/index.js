@@ -2,7 +2,11 @@ import { handleTorrentInfo } from './handlers/torrentInfo.js';
 import { handleTorrentParse } from './handlers/torrentParse.js';
 import { handleParseTorrent } from './handlers/parseTorrent.js';
 import { handleParseMagnet } from './handlers/parseMagnet.js';
-
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*', // 开发环境用 *，生产环境替换为前端域名（如 xxx.pages.dev）
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);

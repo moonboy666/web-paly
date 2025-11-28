@@ -6,7 +6,7 @@ export async function handleTorrentInfo(request, env) {
     if (!infoHash) {
       return new Response(JSON.stringify({ error: '缺少infoHash参数' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });
     }
 
@@ -19,12 +19,12 @@ export async function handleTorrentInfo(request, env) {
     };
 
     return new Response(JSON.stringify({ success: true, data: torrentInfo }), {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', ...corsHeaders }
     });
   }
 }
