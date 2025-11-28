@@ -1,0 +1,7 @@
+name = "bt-torrent-worker"
+main = "worker/index.js"
+compatibility_date = "2024-10-22"
+
+[[routes]]
+pattern = "your-domain.com/api/*" # 替换为你的域名
+zone_name = "your-domain.com"     # 替换为你的域名
